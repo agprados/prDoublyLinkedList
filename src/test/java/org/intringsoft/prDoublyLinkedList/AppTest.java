@@ -1,4 +1,4 @@
-package org.intringsoft.prDoublyLinkedList;
+package org.intringsoft.prdoublylinkedlist;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
