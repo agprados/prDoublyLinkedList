@@ -16,36 +16,36 @@ public class DoublyLinkedList<T> {
 
 	private Node<T> first, last;
 
-  public DoublyLinkedList() {
-    first = null;
-    last = null;
-  }
+	public DoublyLinkedList() {
+		first = null;
+		last = null;
+	}
 
-  public boolean isEmpty() {
-    return first == null && last == null;
-  }
+	public boolean isEmpty() {
+		return first == null && last == null;
+	}
 
-  public void insertBefore(Node<T> node, Node<T> aux) {
-    aux.prev = node.prev;
-    aux.next = node;
-    if (node.prev == null) {
-      first = aux;
-    } else {
-      node.prev.next = aux;
-      node.prev = aux;
-    }
-  }
+	public void insertBefore(Node<T> node, Node<T> aux) {
+		aux.prev = node.prev;
+		aux.next = node;
+		if (node.prev == null) {
+			first = aux;
+		} else {
+			node.prev.next = aux;
+			node.prev = aux;
+		}
+	}
 
-  public void insertAfter(Node<T> node, Node<T> aux) {
-	  aux.prev = node;
-   		aux.next = node.next;
-    if (node.next == null) {
-      last = aux;
-    } else {
-      node.next.prev = aux;
-      node.next = aux;
-    }
-  }
+	public void insertAfter(Node<T> node, Node<T> aux) {
+		aux.prev = node;
+		aux.next = node.next;
+		if (node.next == null) {
+			last = aux;
+		} else {
+			node.next.prev = aux;
+			node.next = aux;
+		}
+	}
 
 	public void insertBeginning(T d) {
 		Node<T> aux = new Node<T>(d, null, null);
@@ -57,72 +57,66 @@ public class DoublyLinkedList<T> {
 		}
 	}
 
-  public void insertEnd(T d) {
-  	Node<T> aux = new Node<T>(d,null,null);
-  	if(isEmpty()) {
-  		first = aux;
-  		last = aux;
-  	} else {
-  		insertAfter(last, aux);
-    }
-  }
-  
-  public T first() throws DoublyLinkedListException {
-  	if(isEmpty()){
-  		throw new DoublyLinkedListException("first on empty doubly linked list");
-  	}else{
-  		return first.data;
-  	}
-  }
-  
-  public T last() throws DoublyLinkedListException {
-  	if(isEmpty()){
-  		throw new DoublyLinkedListException("last on empty doubly linked list");
-  	}else{
-  		return last.data;
-  	}
-  }
+	public void insertEnd(T d) {
+		Node<T> aux = new Node<T>(d, null, null);
+		if (isEmpty()) {
+			first = aux;
+			last = aux;
+		} else {
+			insertAfter(last, aux);
+		}
+	}
 
-  public void remove(Node<T> node) {
-    if (node.prev == null) {
-      first = node.next;
-    } else {
-      node.prev.next = node.next;
-    }
-    if (node.next == null) {
-      last = node.prev;
-    } else {
-      node.next.prev = node.prev;
-    }
-  }
-  public void removeFirst() throws DoublyLinkedListException {
-  	if(isEmpty()){
-  		throw new DoublyLinkedListException("delete first on empty doubly linked list");
-  	}else{
-  		first = first.next;
-  		if(first == null){
-  			last = null;
-  		}
-  	}
-  }
+	public T first() throws DoublyLinkedListException {
+		if (isEmpty()) {
+			throw new DoublyLinkedListException(
+					"first on empty doubly linked list");
+		} else {
+			return first.data;
+		}
+	}
 
-  public void removeLast() throws DoublyLinkedListException {
-  	if(isEmpty()){
-  		throw new DoublyLinkedListException("delete last on empty doubly linked list");
-  	}else{
-  		last = last.prev;
-  		if(last == null){
-  			first = null;
-  		}
-  	}
-  }
+	public T last() throws DoublyLinkedListException {
+		if (isEmpty()) {
+			throw new DoublyLinkedListException(
+					"last on empty doubly linked list");
+		} else {
+			return last.data;
+		}
+	}
 
-  public String toString() {
-  String className = getClass().getName().substring(getClass().getPackage().getName().length()+1);
-      String s = className+"(";
-      for (Node<T> node = first; node != null; node = node.next)
-          s += node.data + (node.next != null ? "," : "");
-      s += ")";
-      return s;
-  }
+	public void deleteFirst() throws DoublyLinkedListException {
+		if (isEmpty()) {
+			throw new DoublyLinkedListException(
+					"delete first on empty doubly linked list");
+		} else {
+			first = first.next;
+			if (first == null) {
+				last = null;
+			}
+		}
+	}
+
+	public void deleteLast() throws DoublyLinkedListException {
+		if (isEmpty()) {
+			throw new DoublyLinkedListException(
+					"delete last on empty doubly linked list");
+		} else {
+			last = last.prev;
+			if (last == null) {
+				first = null;
+			}
+		}
+	}
+
+	@Override
+	public String toString() {
+		String className = getClass().getName().substring(
+				getClass().getPackage().getName().length() + 1);
+		String s = className + "(";
+		for (Node<T> node = first; node != null; node = node.next)
+			s += node.data + (node.next != null ? "," : "");
+		s += ")";
+		return s;
+	}
 }
