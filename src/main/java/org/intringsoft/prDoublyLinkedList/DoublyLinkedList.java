@@ -1,4 +1,4 @@
-package org.intringsoft.prdoublylinkedlist;
+package main.java.org.intringsoft.prDoublyLinkedList;
 
 public class DoublyLinkedList<T> {
 
